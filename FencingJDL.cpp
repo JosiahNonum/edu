@@ -1,3 +1,9 @@
+// Josiah Larimer
+// COSC 2436
+// Programming Set 1
+// 
+// I've left a lot of the debugging stuff in the code
+
 #include<iostream>
 #include<fstream>
 #include<string>
@@ -14,7 +20,7 @@ int main() {
 
 	// getting filename from the user
 	string filename;
-	// cout << "Enter the file name: "; //should always be fence.txt
+	// cout << "Enter the file name: ";
 	// cin >> filename;
 	filename = "fence.txt";
 
@@ -22,7 +28,7 @@ int main() {
 	// opening file
 	string ch;
 	fstream fin(filename, fstream::in);
-	
+
 
 	// getting how many cases there are from the file
 	getline(fin, numberOfCasesString);
@@ -30,21 +36,14 @@ int main() {
 	cout << numberOfCases << endl << endl << endl;
 
 
-	//fileArrayFiller(numRows, numColumns, fin);
-
-	//cin >> ch;
-
-
+	// this runs once for each case there is
 	for (int i = 0; i < numberOfCases; i++)
 	{
-
-
-
 
 		// getting the number of rows and columns
 		string rowsColumns;
 		getline(fin, rowsColumns);
-		
+
 		int rows, columns;
 
 		rows = int(rowsColumns[0] - 48);
@@ -52,151 +51,86 @@ int main() {
 		//cout << rows << " " << columns;
 
 
-		bool firstColumnFound = false;
-		int columnsToBeFenced = 0, firstColumn = 0, lastColumn = 0;
-		int rowsToBeFenced = 0;
+		bool firstRowFound = false;
+		int rowsToBeFenced = 0, firstRow = 0, lastRow = 0;
+		int ColumnsToBeFenced = 0;
 		string hold;
 
-		int firstRow = 9999, lastRow = 0;
+		int firstColumn = 9999, lastColumn = 0;
 
 
-		for (int r = 0; r < rows ; r++)
+		// runs once for each row there is
+		for (int r = 0; r < rows; r++)
 		{
-			
 
-			bool firstRowFound = false;
+			bool firstColumnFound = false;
 			getline(fin, hold);
-			
-			// (number of rows to be fenced) = (last rows with X - first row with X)
-			
 
+			// looks through each row to find the first and last columns with an x
 			for (int j = 0; j < columns; j++)
 			{
 
-				int firstRowTemp = 9999, lastRowTemp = 0;
+				int firstColumnTemp = 9999, lastColumnTemp = 0;
 
-
-				if ((hold[j] == 'x') && firstRowFound == false)
+				if ((hold[j] == 'x') && firstColumnFound == false)
 				{
-					firstRowTemp = j;
-					firstRowFound = true;
+					firstColumnTemp = j;
+					firstColumnFound = true;
 					//cout << "firstRow: /n" << j << endl;
-					
-					lastRowTemp = j;
-					
-			
+
+					lastColumnTemp = j;
 				}
 				else if (hold[j] == 'x')
 				{
-					lastRowTemp = j;
-			
+					lastColumnTemp = j;
 					//cout << "lastRow: \n" << j << endl;
-
-				
 				}
-				//else
-					//cout << "		round r= " << r << " and j= " << j << " " << hold[j] << endl;
-				//(number of columns to be fenced) = (last column with X - first column with X)
-				
-				if (firstRowTemp < firstRow && firstRowTemp != 9999)
+
+				if (firstColumnTemp < firstColumn && firstColumnTemp != 9999)
 				{
-					firstRow = firstRowTemp;
+					firstColumn = firstColumnTemp;
 					//cout << "first column in row " << r << " is " << j << endl;
 				}
-				if (lastRowTemp > lastRow)
+				if (lastColumnTemp > lastColumn)
 				{
-					lastRow = lastRowTemp;
+					lastColumn = lastColumnTemp;
 					//cout << "last column in row " << r << " is " << j << endl;
 				}
-				
-
 			}
 
-			if (firstRowFound && firstColumnFound == false)
+
+			// the logic for deciding which is the first and last rows to contain an x
+			if (firstColumnFound && firstRowFound == false)
 			{
-				firstColumn = r;
+				firstRow = r;
 				//cout << "first row is " << firstColumn << endl;
-				firstColumnFound = true;
+				firstRowFound = true;
 			}
-			else if (firstRowFound && firstColumnFound == true)
+			else if (firstColumnFound && firstRowFound == true)
 			{
-				lastColumn = r;
+				lastRow = r;
 				//cout << "last row is " << lastColumn << endl;
 			}
 
-
-
 		}
 
-		if (firstRow == 9999)
-			firstRow = 0;
+
+
+		// the number of rows and columns is just bottom minus top and right minus left
+		if (firstColumn == 9999)
+			firstColumn = 0;
+		ColumnsToBeFenced = (lastColumn - firstColumn);
+		//cout <<endl<< "last colomn is " << lastColumn << " first column is " << firstColumn;
+
 		rowsToBeFenced = (lastRow - firstRow);
-		//cout <<endl<< "last colomn is " << lastRow << " first column is " << firstRow;
-				
-		columnsToBeFenced = (lastColumn - firstColumn);
+		//cout << endl << "last row is " << lastRow << " first row is " << firstRow;
 
-		//cout << endl << "last row is " << lastColumn << " first row is " << firstColumn;
+		ColumnsToBeFenced++;
+		rowsToBeFenced++;
 
-
-
-	//	if (firstRow == 0)
-			rowsToBeFenced++;
-		//if (firstColumn == 0)
-		    columnsToBeFenced++;
-
-
-	//	if (rowsToBeFenced == 0)
-	//		rowsToBeFenced = 1;
-	//	if (columnsToBeFenced == 0)
-	//		columnsToBeFenced = 1;
-
-
-		cout << endl << "Case " << i + 1 << ": " << columnsToBeFenced << " " << rowsToBeFenced <<endl;
-
-
+		cout << endl << "Case " << i + 1 << ": " << rowsToBeFenced << " " << ColumnsToBeFenced << endl;
 	}
 
-
-
-
-
-	// write something to close the file
-
-
-
-
-
-
+	// closing the file
+	fin.close();
 }
-
-// check for columns
-
-// check for rows
-
-
-
-
-
-
-/*
-void fileArrayFiller(int numRows, int numColumns, fstream fin) {
-
-	string rowsAndColumns[8];
-
-
-	for (int i = 0 ; i < numRows ; i++)
-		fin >> rowsAndColumns[i];
-
-	for (int j = 0; j < numRows; j++)
-	{
-
-		for (int i = 0; i < numColumns ; i++)
-		{
-
-			cout << rowsAndColumns[j][i];
-
-		}
-
-	}
-}
-*/
