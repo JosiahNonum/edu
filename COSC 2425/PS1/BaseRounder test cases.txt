@@ -1,0 +1,32 @@
+
+Enter a value: 0.11101
+Enter the base of the value: 2
+Number of decimal places to round: 4
+
+The result in base 2 : 0.1111
+
+Run Again (Y/N): y
+
+Enter a value: 17.9AAA
+Enter the base of the value: 11
+Number of decimal places to round: 2
+
+The result in base 11 : 17.A0
+
+Run Again (Y/N): Y
+
+Enter a value: 124.3421
+Enter the base of the value: 5
+Number of decimal places to round: 2
+
+The result in base 5 : 124.34
+
+Run Again (Y/N): y
+
+Enter a value: 812.6481
+Enter the base of the value: 9
+Number of decimal places to round: 2
+
+The result in base 9 : 812.65
+
+Run Again (Y/N): n

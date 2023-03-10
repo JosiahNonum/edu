@@ -1,0 +1,24 @@
+
+Enter a positive number: 37
+
+37 in unary is: 1111111111111111111111111111111111110
+
+Run Again (Y/N): Y
+
+Enter a positive number: 1
+
+1 in unary is: 0
+
+Run Again (Y/N): y
+
+Enter a positive number: 54
+
+54 in unary is: 111111111111111111111111111111111111111111111111111110
+
+Run Again (Y/N): y
+
+Enter a positive number: 12
+
+12 in unary is: 111111111110
+
+Run Again (Y/N): n

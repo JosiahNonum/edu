@@ -1,0 +1,28 @@
+
+Enter a value: 15
+
+
+15 = 00001111
+
+Run Again (Y/N): y
+
+Enter a value: -49
+
+
+-49 = 11001111
+
+Run Again (Y/N): y
+
+Enter a value: 120
+
+
+120 = 01111000
+
+Run Again (Y/N): Y
+
+Enter a value: -120
+
+
+-120 = 10001000
+
+Run Again (Y/N): n
